@@ -224,3 +224,65 @@
 // };
 
 // console.log(targ1([5, 5], 10));
+
+const ex1 = (arr, target) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let n = i + 1; n < arr.length; n++) {
+      if (arr[i] + arr[n] === target) {
+        return [i, n];
+      }
+    }
+  }
+};
+console.log(ex1([1, 7, 11, 6], 7));
+
+const ex2 = (arr, target) => {
+  const map = {};
+  for (let i = 0; i < arr.length; i++) {
+    map[arr[i]] = i;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    let key = target - arr[i];
+    if (map[key] !== undefined && map[key] !== i) {
+      return [i, map[key]];
+    }
+  }
+  return [];
+};
+console.log(ex2([1, 7, 11, 6], 7));
+
+const palindromo = (string) => {
+  let invertida = string.split("").reverse().join("");
+  if (invertida === string) {
+    return true;
+  }
+  return false;
+};
+console.log(palindromo("ovo"));
+
+function maxArea(height) {
+  let maxWater = 0; // Armazena a maior área encontrada
+  let left = 0,
+    right = height.length - 1; // Início e fim do array
+  console.log(height.length);
+  while (left < right) {
+    let area = Math.min(height[left], height[right]) * (right - left);
+    maxWater = Math.max(maxWater, area);
+
+    // Move o ponteiro da parede menor para tentar encontrar uma maior
+    if (height[left] < height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return maxWater;
+}
+
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7, 1])); // Saída: 49
+
+let ar = [1, 2, 34];
+const menor = Math.min(ar);
+console.log(menor);
